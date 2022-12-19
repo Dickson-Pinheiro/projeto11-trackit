@@ -5,12 +5,13 @@ import Button from "../components/Button"
 import HeaderLogin from "../components/HeaderLogin"
 import { useContext, useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 import UserContext from "../context/UserContext"
 
 
 
 export default function LoginPage() {
-
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const { setUser } = useContext(UserContext)
@@ -28,6 +29,7 @@ export default function LoginPage() {
             const userData = {email, id, image, name, token}
             console.log(userData)
             setUser(userData)
+            navigate("/habitos")
         })
         .catch(err => console.log(err))
     }
@@ -46,12 +48,13 @@ export default function LoginPage() {
 }
 
 const ContainerLogin = styled.div`
-    margin-top: 68px;
+    padding-top: 68px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     height: 100vh;
+    background-color: #ffffff;
     a {
         color: #52B6FF;
         text-decoration: underline;
