@@ -14,6 +14,7 @@ export default function FormHabitos({setShowForm, reloadHabits, setReloadHabits}
         e.preventDefault()
         if(selectedDays.length === 0){
             alert("Selecione ao menos um dia")
+            return
         }
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
         const config = {
