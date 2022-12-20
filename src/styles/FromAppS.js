@@ -11,11 +11,17 @@ const FormAppS = styled.form`
         border: 1px solid #D4D4D4;
         width: 303px;
         height: 45px;
+        font-family: Lexend Deca;
+        font-size: 20px;
         &::placeholder {
             color: #DBDBDB;
             font-size: 21px;
             font-family: Lexend Deca;
             padding-left: 11px;
+        }
+        &:disabled {
+            background-color: #F2F2F2;
+            color: #AFAFAF;
         }
     }
 `

@@ -5,29 +5,33 @@ import Days from "./Days"
 import { useContext } from "react"
 import UserContext from "../context/UserContext"
 
-export default function Habito({days, name, id, reloadHabits, setReloadHabits}) {
-    const {user} = useContext(UserContext)
-    const {token} = user
-    function deleteHabit(){
-        const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
+export default function Habito({ days, name, id, reloadHabits, setReloadHabits }) {
+    const { user } = useContext(UserContext)
+    const { token } = user
+    function deleteHabit() {
+        const permission = window.confirm("Tem certeza que deseja excluir esse hábito?")
+        if (permission) {
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             }
+            axios.delete(URL, config)
+                .then(res => {
+                    console.log(res)
+                    setReloadHabits(!reloadHabits)
+                })
         }
-        axios.delete(URL, config)
-        .then(res => {
-            console.log(res)
-            setReloadHabits(!reloadHabits)
-        })
     }
+
 
     return (
         <ContainerHabito>
             <HabitoS>
                 <p>{name}</p>
-                <img src={trash} alt="trash" onClick={deleteHabit}/>
-                <Days days={days}/>
+                <img src={trash} alt="trash" onClick={deleteHabit} />
+                <Days days={days} />
             </HabitoS>
         </ContainerHabito>
     )

@@ -22,7 +22,7 @@ const ContainerCriarHabito = styled.div`
     padding-left: 18px;
     padding-right: 18px;
     font-family: Lexend Deca;
-    margin-top: 21px;
+    margin-top: 91px;
     margin-bottom: 21px;
     p {
         color: #126BA5;

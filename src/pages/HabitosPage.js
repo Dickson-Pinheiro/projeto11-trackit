@@ -3,6 +3,7 @@ import CriarHabito from "../components/CriarHabitos";
 import FormHabitos from "../components/FormHabito";
 import Habitos from "../components/Habitos";
 import HeaderHabitos from "../components/HeaderHabitos";
+import NavFooter from "../components/NavFooter";
 
 
 export default function HabitosPage() {
@@ -16,6 +17,7 @@ export default function HabitosPage() {
             <CriarHabito showForm={showForm} setShowForm={setShowForm} />
             {showForm && <FormHabitos setShowForm={setShowForm} reloadHabits={reloadHabits} setReloadHabits={setReloadHabits}/>}
             <Habitos reloadHabits={reloadHabits} setReloadHabits={setReloadHabits}/>
+            <NavFooter />
         </>
     )
 }

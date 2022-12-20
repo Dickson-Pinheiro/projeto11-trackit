@@ -14,14 +14,15 @@ export default function LoginPage() {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [loadding, setLoadding] = useState(false)
     const { setUser } = useContext(UserContext)
 
     function loginApp(e){
         e.preventDefault()
+        setLoadding(true)
         const body = {
             email,
             password
-
         }
         axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
         .then(res => {
@@ -31,16 +32,31 @@ export default function LoginPage() {
             setUser(userData)
             navigate("/habitos")
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            alert(err.response.data.message)
+            setLoadding(false)
+            setEmail("")
+            setPassword("")
+        })
     }
 
     return (
         <ContainerLogin>
             <HeaderLogin />
             <FormAppS onSubmit={loginApp}>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="email"/>
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="senha"/>
-                <Button >Entrar</Button>
+                {
+                    loadding ? 
+                    <>
+                    <input type="email" value={email} disabled onChange={e => setEmail(e.target.value)} required placeholder="email"/>
+                    <input type="password" value={password} disabled onChange={e => setPassword(e.target.value)} required placeholder="senha"/>
+                    </> : 
+                    <>
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="email"/>
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="senha"/>
+                    </>
+                }
+                <Button loadding={loadding}>Entrar</Button>
             </FormAppS>
             <Link to="/cadastro">Não tem uma conta? Cadastre-se</Link>
         </ContainerLogin>

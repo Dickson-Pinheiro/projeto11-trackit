@@ -16,6 +16,9 @@ export default function HeaderHabitos(){
 }
 
 const HeaderHabitosContainer = styled.header`
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     width: 100%;
     height: 70px;

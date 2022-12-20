@@ -38,6 +38,7 @@ export default function Habitos({reloadHabits, setReloadHabits}) {
 
 const ContainerHabitos = styled.div`
     margin-top: 20px;
+    margin-bottom: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
